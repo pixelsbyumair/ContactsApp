@@ -1,4 +1,4 @@
-angular.module("ContactsApp", ['ui.router']).config(function($stateProvider, $urlRouterProvider){
+angular.module("ContactsApp", ['ui.router', 'firebase']).config(function($stateProvider, $urlRouterProvider){
 
 		$stateProvider.state('app', {
 			url: '/',

@@ -1,5 +1,11 @@
-angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebaseArray', function($scope, $firebaseArray){
+angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebaseArray', '$firebaseObject', function($scope, $firebaseArray, $firebaseObject){
 
-	console.log($scope);
-	console.log($firebaseArray);
+
+
+	var ref = firebase.database().ref();
+
+	$scope.contacts = $firebaseArray(ref);
+	$scope.object = $firebaseObject(ref);
+
+	console.log($scope.object);
 }]);

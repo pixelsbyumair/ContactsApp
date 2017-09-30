@@ -13,6 +13,7 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 
 	var ref = firebase.database().ref();
 	$scope.contacts = $firebaseArray(ref);
+	
 	//$scope.object = $firebaseObject(ref);
 
 

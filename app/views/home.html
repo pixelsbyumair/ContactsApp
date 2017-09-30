@@ -41,21 +41,23 @@
 <br >
 <br >
 
-<!-- <div class="row">
+<div class="row">
 	<div class="col-md-12">
 		<table class="table table-default table-striped">
 
 			<thead>
-				<td>S/No</td>
-				<td>Name</td>
-				<td>Email</td>
-				<td>Actions</td>
+				<td><b>S/No</b></td>
+				<td><b>Name</b></td>
+				<td><b>Email</b></td>
+				<td><b>Phone</b></td>
+				<td><b>Actions</b></td>
 			</thead>
 			<tbody>
-				<tr ng-repeat="conatct in contacts">
-					<td>{{$index}}</td>
+				<tr ng-repeat="contact in contacts">
+					<td>{{$index+1}}</td>
 					<td>{{contact.name}}</td>
 					<td>{{contact.email}}</td>
+					<td>{{contact.phone}}</td>
 					<td>
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</button>
 						<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
@@ -64,4 +66,4 @@
 			</tbody>
 		</table>
 	</div>
-</div> -->
+</div>

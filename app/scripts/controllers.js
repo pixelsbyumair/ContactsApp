@@ -4,6 +4,7 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 	$scope.contacts = $firebaseArray(ref);
 
 	$scope.profile = {
+		id: '',
 		name: '',
 		email: '',
 		phone: ''
@@ -14,6 +15,48 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 		success: false
 	};
 
+	$scope.editForm = {
+		error: false,
+		success: false
+	};
+
+
+
+	$scope.editContact = function(contact) {
+		//console.log(contact);
+
+		$scope.profile = {
+			id: contact.$id,
+			name: contact.name,
+			email: contact.email,
+			phone: contact.phone
+		};
+	}
+
+
+	$scope.changeContact = function(contact) {
+
+		// getting record first
+		var id = $scope.profile.id;
+		var record = $scope.contacts.$getRecord(id);
+	
+		record.name = $scope.profile.name;
+		record.email = $scope.profile.email;
+		record.phone = $scope.profile.phone;
+
+
+		//saving the record to database
+		$scope.contacts.$save(record).then(function(ref){
+			
+			$('#editModal').modal('toggle');
+			$scope.profile = {
+				id: '',
+				name: '',
+				email: '',
+				phone: ''
+			};
+		});
+	}
 	
 
 	$scope.removeContact = function(contact) {
@@ -26,8 +69,6 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 	}
 
 
-
-
 	$scope.addContact = function() {
 
 		$scope.contacts.$add({
@@ -36,10 +77,8 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 			phone: $scope.profile.phone
 		
 		}).then(function(ref){
-			console.log('profile added');
-			//var id = ref.key();
-			//console.log("Contact "+id+" added!");
-			$scope.addForm.success = true;
+
+			$('#myModal').modal('toggle');
 
 			$scope.profile = {
 				name: '',

@@ -1,5 +1,8 @@
 angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebaseArray', '$firebaseObject', function($scope, $firebaseArray, $firebaseObject){
 
+	var ref = firebase.database().ref();
+	$scope.contacts = $firebaseArray(ref);
+
 	$scope.profile = {
 		name: '',
 		email: '',
@@ -11,14 +14,21 @@ angular.module('ContactsApp').controller('IndexController', ['$scope', '$firebas
 		success: false
 	};
 
-	var ref = firebase.database().ref();
-	$scope.contacts = $firebaseArray(ref);
 	
-	//$scope.object = $firebaseObject(ref);
+
+	$scope.removeContact = function(contact) {
+
+		var ans = confirm("Are you sure you want to remove \""+contact.name+"\" from contacts?")
+
+		if (ans) {
+			$scope.contacts.$remove(contact);
+		}
+	}
+
+
 
 
 	$scope.addContact = function() {
-		
 
 		$scope.contacts.$add({
 			name: $scope.profile.name,
